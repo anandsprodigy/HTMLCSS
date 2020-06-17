@@ -1,1 +1,7 @@
 #file creates random what3words based on randomized longitude and latitude.
+
+#Dependencies
+
+Jquery (Ajax)
+Boostrap
+API_KEY from What3words

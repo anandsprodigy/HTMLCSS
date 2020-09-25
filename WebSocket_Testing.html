@@ -1,1 +1,58 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Demo socket</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<script>
+
+		let socket;
+
+		function connect(){
+			socket = new WebSocket("wss://echo.websocket.org");
+
+		socket.onopen = function(event){
+			alert("connected");
+		}
+
+		socket.onmessage = function(event){
+			alert("message: "+ event.data);
+		}
+
+		socket.onclose = function(event){
+			alert("Good Bye!");
+		}
+
+		socket.onerror = function(error){
+			alert("Error: "+error.message);
+		}
+		
+		}
+		
+
+
+
+		function sendData(){
+			let nameValue= document.getElementById("name").value;
+			alert(nameValue);
+			socket.send(nameValue);
+		}
+
+		function closeSession(){
+			socket.send("Good Bye!");
+			socket.close();
+		}
+
+	</script>
+
+
+	<input type="text" name="name" id="name" value="name" placeholder="name">
+	<button onclick="connect()">Connect</button>
+	<button onclick="sendData()">Send</button>
+	<button onclick="closeSession()">Close</button>
+</body>
+</html>
